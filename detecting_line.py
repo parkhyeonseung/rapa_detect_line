@@ -32,7 +32,7 @@ def callback(data):
     if left_mean < 60 or left_mean2 < 60 :
         direction = 'RIGHT'
         pass
-    elif right_mean < 60 or left_mean2 < 60 :
+    elif right_mean < 60 or right_mean2 < 60 :
         direction = 'LEFT'
         pass
     else :
@@ -44,7 +44,7 @@ def callback(data):
 
 def main():
     rospy.init_node('planer_node')
-    rospy.Subscriber('/camera/image_raw',Image,callback)
+    rospy.Subscriber('/cv_camera/image_raw',Image,callback)
     rospy.spin()
     pass
 
