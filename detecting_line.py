@@ -9,7 +9,6 @@ bridge = CvBridge()
 
 def callback(data):
     global direction
-    cv_image = cv.imread('./images/line.png')
     cv_image = bridge.imgmsg_to_cv2 (data, cv.IMREAD_GRAYSCALE)
     cv.imshow('now driving', cv_image)
         
