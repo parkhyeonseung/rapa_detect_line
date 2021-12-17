@@ -47,10 +47,10 @@ def callback(data):
         right_mean2 = right_img2.mean()
         
         if left_mean < 60 or left_mean2 < 60 :
-            direction = 'RIGHT'
+            direction = 'LEFT'
             pass
         elif right_mean < 60 or right_mean2 < 60 :
-            direction = 'LEFT'
+            direction = 'RIGHT'
             pass
         else :
             direction = 'GO'
