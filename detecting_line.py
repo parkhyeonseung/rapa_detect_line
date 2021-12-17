@@ -18,25 +18,43 @@ def callback(data):
     rect_img = cv.rectangle(cv_image, (420, 430), (430, 440), (0,0,255), 3)
     cv.imshow('now driving',rect_img)
 
-    left_img = cv_image[260:270, 430:440]
-    right_img = cv_image[210:220, 430:440]
-    left_img2 = cv_image[260:270, 430:440]
-    right_img2 = cv_image[420:430, 430:440]
-
-    left_mean = left_img.mean()
-    right_mean = right_img.mean()
-    left_mean2 = left_img2.mean()
-    right_mean2 = right_img2.mean()
-    
-    if left_mean < 60 or left_mean2 < 60 :
-        direction = 'RIGHT'
-        pass
-    elif right_mean < 60 or right_mean2 < 60 :
-        direction = 'LEFT'
-        pass
-    else :
+    key = cv.waitKey(1)
+    if key == ord('w'):
         direction = 'GO'
-        pass
+
+    elif key == ord('s'):
+        direction = 'STOP'
+
+    elif key == ord('z'):
+        direction = 'BACK'
+
+    elif key == ord('a'):
+        direction = 'LEFT'
+
+    elif key == ord('d'):
+        direction = 'RIGHT'
+
+    if key == None:
+
+        left_img = cv_image[260:270, 430:440]
+        right_img = cv_image[210:220, 430:440]
+        left_img2 = cv_image[260:270, 430:440]
+        right_img2 = cv_image[420:430, 430:440]
+
+        left_mean = left_img.mean()
+        right_mean = right_img.mean()
+        left_mean2 = left_img2.mean()
+        right_mean2 = right_img2.mean()
+        
+        if left_mean < 60 or left_mean2 < 60 :
+            direction = 'RIGHT'
+            pass
+        elif right_mean < 60 or right_mean2 < 60 :
+            direction = 'LEFT'
+            pass
+        else :
+            direction = 'GO'
+            pass
            
     pub = rospy.Publisher('/motor_commands', String, queue_size=10)
     pub.publish(direction)
