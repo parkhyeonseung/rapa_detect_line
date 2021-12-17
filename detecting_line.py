@@ -15,15 +15,24 @@ def callback(data):
         
     rect_img = cv.rectangle(cv_image, (260, 430), (270, 440), (0,0,255), 3)
     rect_img = cv.rectangle(cv_image, (370, 430), (380, 440), (0,0,255), 3)
+    rect_img = cv.rectangle(cv_image, (210, 430), (220, 440), (0,0,255), 3)
+    rect_img = cv.rectangle(cv_image, (420, 430), (430, 440), (0,0,255), 3)
     cv.imshow('now driving',rect_img)
 
     left_img = cv_image[260:270, 430:440]
-    right_img = cv_image[370:380, 430:440]
+    right_img = cv_image[210:220, 430:440]
+    left_img2 = cv_image[260:270, 430:440]
+    right_img2 = cv_image[420:430, 430:440]
+
+    left_mean = left_img.mean()
+    right_mean = right_img.mean()
+    left_mean2 = left_img2.mean()
+    right_mean2 = right_img2.mean()
     
-    if np.all(left_img) <60 :
+    if left_mean < 60 or left_mean2 < 60 :
         direction = 'RIGHT'
         pass
-    elif np.all(right_img) < 60:
+    elif right_mean < 60 or left_mean2 < 60 :
         direction = 'LEFT'
         pass
     else :
