@@ -61,7 +61,7 @@ def callback(data):
         elif np.all(cv_image[400:410, 430:440]) < 70 or np.all(cv_image[480:490, 430:440]) < 70 or np.all(cv_image[560:570, 430:440]) < 70:
             direction = 'RIGHT'
         # 중앙 아래 사각형이 밖으로 나가면 정지
-        elif np.all(cv_image[320:330, 430:440]) > 70 and np.all(cv_image[320:330, 430:440]) < 160 :
+        elif np.all(cv_image[320:330, 430:440]) > 70 and np.all(cv_image[320:330, 430:440]) < 120 :
             direction = 'STOP'
         else:
             pass
