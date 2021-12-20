@@ -1,7 +1,8 @@
 import cv2 as cv
 import rospy
 from sensor_msgs.msg import Image
-from std_msgs.msg import String
+from std_msgs.msg import String 
+from std_msgs.msg import Twist
 from cv_bridge import CvBridge
 import numpy as np
 
@@ -66,7 +67,8 @@ def callback(data):
         else:
             pass
            
-    pub = rospy.Publisher('/motor_commands', String, queue_size=10)
+    # pub = rospy.Publisher('/motor_commands', String, queue_size=10)
+    pub = rospy.Publisher('/cmd_vel', Twist, queue_size = 10)
     pub.publish(direction)
 
 def main():
